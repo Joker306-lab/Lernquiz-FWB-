@@ -7,26 +7,26 @@ if (startButton) {
   startButton.addEventListener("click", startQuiz);
 }
 
-const avatarWrap = document.getElementById("avatarWrap");
+const avatarStage = document.getElementById("avatarStage");
 
 function moveAvatar(clientX, clientY) {
-  if (!avatarWrap) return;
-  const x = (window.innerWidth / 2 - clientX) / 55;
-  const y = (window.innerHeight / 2 - clientY) / 70;
-  avatarWrap.style.transform = `translate(${x}px, ${y}px)`;
+  if (!avatarStage) return;
+  const offsetX = (window.innerWidth / 2 - clientX) / 65;
+  const offsetY = (window.innerHeight / 2 - clientY) / 85;
+  avatarStage.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
 }
 
-document.addEventListener("mousemove", (e) => {
-  moveAvatar(e.clientX, e.clientY);
+document.addEventListener("mousemove", (event) => {
+  moveAvatar(event.clientX, event.clientY);
 }, { passive: true });
 
-document.addEventListener("touchmove", (e) => {
-  const t = e.touches && e.touches[0];
-  if (!t) return;
-  moveAvatar(t.clientX, t.clientY);
+document.addEventListener("touchmove", (event) => {
+  const touch = event.touches && event.touches[0];
+  if (!touch) return;
+  moveAvatar(touch.clientX, touch.clientY);
 }, { passive: true });
 
 document.addEventListener("touchend", () => {
-  if (!avatarWrap) return;
-  avatarWrap.style.transform = "translate(0px, 0px)";
+  if (!avatarStage) return;
+  avatarStage.style.transform = "translate(0px, 0px)";
 }, { passive: true });
