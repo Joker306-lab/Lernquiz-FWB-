@@ -1,52 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#f5f5f7" />
-  <title>Notfallpflege Quiz</title>
-  <meta name="description" content="Notfallpflege Quiz – Trainiere Entscheidungen unter Zeitdruck." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notfallpflege Quiz</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="app-shell">
-    <div class="ambient ambient-left"></div>
-    <div class="ambient ambient-right"></div>
-    <div class="ambient ambient-bottom"></div>
-
-    <section class="hero" id="hero">
-      <div class="hero-inner">
-        <div class="figure-wrap" id="figure-wrap" aria-hidden="true">
-          <div class="figure-glow"></div>
-          <div class="figure-ring ring-one"></div>
-          <div class="figure-ring ring-two"></div>
-          <img src="assets/avatar.png" alt="Illustration eines Notfallpflegers" class="figure" id="avatar" />
-        </div>
-
-        <div class="copy-block" id="copy-block">
-          <p class="eyebrow">Interdisziplinäre Notfallpflege</p>
-          <h1 class="title-gradient">Notfallpflege Quiz</h1>
-          <p class="subtitle">
+<div class="container">
+    <img src="assets/avatar.png" class="avatar">
+    <div class="content">
+        <h1 class="title">Notfallpflege Quiz</h1>
+        <p class="subtitle">
             Trainiere Entscheidungen,<br>
-            treffe sie sicher,<br>
+            treffe sie sicher –<br>
             auch unter Zeitdruck.
-          </p>
-        </div>
-
-        <a class="start-button" href="quiz.html" aria-label="Quiz starten">
-          <span>Start</span>
-        </a>
-      </div>
-    </section>
-
-    <footer class="site-footer">
-      <small>© Notfallpflege Quiz</small>
-    </footer>
-  </main>
-
-  <script src="script.js"></script>
+        </p>
+        <button class="start-button" onclick="startQuiz()">START</button>
+    </div>
+    <div class="footer">© Notfallpflege Quiz</div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
