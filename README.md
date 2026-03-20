@@ -1,3 +1,3 @@
 # Notfallpflege Quiz
 
-Update mit angepasstem Menüdesign, kleinerer Hero-Zeile und buntem Erklärbereich.
+Projekt mit Startseite, Übersicht und separater xABCDE-Quizseite.
