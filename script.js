@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const startButton = document.querySelector('.start-button');
-  const scene = document.getElementById('scroll-scene');
   const root = document.documentElement;
+  const hero = document.getElementById('hero');
 
   if (startButton) {
     startButton.addEventListener('click', () => {
@@ -9,39 +9,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (!scene || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     return;
   }
 
-  const updateScrollAnimation = () => {
-    const rect = scene.getBoundingClientRect();
-    const total = Math.max(scene.offsetHeight - window.innerHeight, 1);
-    const progress = Math.min(Math.max(-rect.top / total, 0), 1);
+  const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
-    const avatarScale = 1 + progress * 0.16;
-    const avatarShift = -progress * 34;
-    const copyShift = -progress * 16;
-    const copyOpacity = 1 - progress * 0.18;
+  const applyParallax = (clientX, clientY) => {
+    const rect = hero.getBoundingClientRect();
+    const x = ((clientX - rect.left) / rect.width - 0.5) * 2;
+    const y = ((clientY - rect.top) / rect.height - 0.5) * 2;
 
-    root.style.setProperty('--scroll-progress', progress.toFixed(3));
-    root.style.setProperty('--avatar-scale', avatarScale.toFixed(3));
-    root.style.setProperty('--avatar-shift', `${avatarShift.toFixed(1)}px`);
-    root.style.setProperty('--copy-shift', `${copyShift.toFixed(1)}px`);
-    root.style.setProperty('--copy-opacity', copyOpacity.toFixed(3));
+    const limitedX = clamp(x, -1, 1);
+    const limitedY = clamp(y, -1, 1);
+
+    root.style.setProperty('--figure-x', `${(limitedX * 9).toFixed(1)}px`);
+    root.style.setProperty('--figure-y', `${(limitedY * -10).toFixed(1)}px`);
+    root.style.setProperty('--copy-x', `${(limitedX * -4).toFixed(1)}px`);
+    root.style.setProperty('--copy-y', `${(limitedY * -3).toFixed(1)}px`);
+    root.style.setProperty('--tilt-x', `${(limitedY * 2.8).toFixed(2)}deg`);
+    root.style.setProperty('--tilt-y', `${(limitedX * -3.4).toFixed(2)}deg`);
   };
 
-  let ticking = false;
-  const requestTick = () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        updateScrollAnimation();
-        ticking = false;
-      });
-      ticking = true;
-    }
+  const resetParallax = () => {
+    root.style.setProperty('--figure-x', '0px');
+    root.style.setProperty('--figure-y', '0px');
+    root.style.setProperty('--copy-x', '0px');
+    root.style.setProperty('--copy-y', '0px');
+    root.style.setProperty('--tilt-x', '0deg');
+    root.style.setProperty('--tilt-y', '0deg');
   };
 
-  updateScrollAnimation();
-  window.addEventListener('scroll', requestTick, { passive: true });
-  window.addEventListener('resize', requestTick);
+  window.addEventListener('mousemove', (event) => {
+    applyParallax(event.clientX, event.clientY);
+  }, { passive: true });
+
+  window.addEventListener('touchmove', (event) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    applyParallax(touch.clientX, touch.clientY);
+  }, { passive: true });
+
+  window.addEventListener('mouseleave', resetParallax, { passive: true });
+  window.addEventListener('touchend', resetParallax, { passive: true });
+  window.addEventListener('touchcancel', resetParallax, { passive: true });
 });

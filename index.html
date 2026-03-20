@@ -12,40 +12,40 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="page-shell">
-    <div class="background-glow glow-left"></div>
-    <div class="background-glow glow-right"></div>
-    <div class="background-glow glow-top"></div>
+  <main class="app-shell">
+    <div class="ambient ambient-left"></div>
+    <div class="ambient ambient-right"></div>
+    <div class="ambient ambient-bottom"></div>
 
-    <section class="scroll-scene" id="scroll-scene">
-      <div class="hero-stage">
-        <main class="hero-card">
-          <section class="hero-content">
-            <div class="avatar-wrap" aria-hidden="true">
-              <div class="avatar-halo"></div>
-              <div class="avatar-orbit orbit-a"></div>
-              <div class="avatar-orbit orbit-b"></div>
-              <img src="assets/avatar.png" alt="Illustration eines Notfallpflegers" class="avatar" id="avatar" />
-            </div>
+    <section class="hero" id="hero">
+      <div class="hero-inner">
+        <div class="figure-wrap" id="figure-wrap" aria-hidden="true">
+          <div class="figure-glow"></div>
+          <div class="figure-ring ring-one"></div>
+          <div class="figure-ring ring-two"></div>
+          <img src="assets/avatar.png" alt="Illustration eines Notfallpflegers" class="figure" id="avatar" />
+        </div>
 
-            <div class="copy-block" id="copy-block">
-              <p class="eyebrow">Interdisziplinäre Notfallpflege</p>
-              <h1 class="title-gradient">Notfallpflege Quiz</h1>
-              <p class="subtitle">Trainiere Entscheidungen unter Zeitdruck</p>
-            </div>
+        <div class="copy-block" id="copy-block">
+          <p class="eyebrow">Interdisziplinäre Notfallpflege</p>
+          <h1 class="title-gradient">Notfallpflege Quiz</h1>
+          <p class="subtitle">
+            Trainiere Entscheidungen,<br>
+            treffe sie sicher,<br>
+            auch unter Zeitdruck.
+          </p>
+        </div>
 
-            <a class="start-button" href="quiz.html" aria-label="Quiz starten">
-              <span>Start</span>
-            </a>
-          </section>
-        </main>
+        <a class="start-button" href="quiz.html" aria-label="Quiz starten">
+          <span>Start</span>
+        </a>
       </div>
     </section>
 
     <footer class="site-footer">
       <small>© Notfallpflege Quiz</small>
     </footer>
-  </div>
+  </main>
 
   <script src="script.js"></script>
 </body>
