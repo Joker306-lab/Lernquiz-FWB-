@@ -1,3 +1,3 @@
 # Notfallpflege Quiz
 
-Responsive Startseite für iPhone, iPad und Desktop.
+Update mit angepasstem Menüdesign, kleinerer Hero-Zeile und buntem Erklärbereich.
