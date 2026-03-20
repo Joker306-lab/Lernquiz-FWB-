@@ -3,9 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quiz</title>
+<title>Quiz Menü</title>
+<link rel="stylesheet" href="styles.css">
 </head>
-<body style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;">
-<h2>Quiz startet hier</h2>
+<body>
+
+<div class="container">
+
+<h1 class="headline">Lernquiz</h1>
+
+<div class="list">
+
+<div class="card">1. xABCDE</div>
+<div class="card">2. Laborwerte</div>
+<div class="card">3. Medikamente</div>
+<div class="card">4. EKG lernen</div>
+
+<div class="card highlight" onclick="openModules()">5. Module & Dozenten</div>
+
+<div id="modules" class="hidden">
+<div class="subcard">Fachmodul 1</div>
+<div class="subcard">Fachmodul 2</div>
+<div class="subcard">Fachmodul 3</div>
+<div class="subcard">Fachmodul 4</div>
+<div class="subcard">Fachmodul 5</div>
+</div>
+
+<div class="card">6. Fallbeispiele</div>
+<div class="card">7. Meine Schwächen</div>
+<div class="card">8. Krankheitsbilder</div>
+
+</div>
+
+<h2 class="section">Grundlagen verstehen</h2>
+
+<div class="list">
+<div class="card small">EKG</div>
+<div class="card small">BGA</div>
+<div class="card small">Krankheitsbilder</div>
+</div>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
