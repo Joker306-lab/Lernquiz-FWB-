@@ -1,50 +1,79 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quiz Menü</title>
-<link rel="stylesheet" href="quiz.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Quiz Menü</title>
+  <link rel="stylesheet" href="quiz.css">
 </head>
 <body>
+  <main class="page-shell">
+    <section class="hero">
+      <p class="eyebrow">Fachweiterbildung Lernquiz</p>
+      <h1>Wissen trainieren für Schockraum, Notaufnahme und Akutsituationen</h1>
+      <p class="lead">
+        Dieses Quiz dient zum wiederholten, strukturierten Lernen. Du trainierst xABCDE,
+        Laborwerte, Medikamente, EKG, Polytrauma und Immobilisation.
+      </p>
 
-<div class="container">
+      <div class="mode-switch">
+        <button class="mode-button active" type="button">Lernmodus</button>
+        <button class="mode-button" type="button">Prüfungsmodus</button>
+      </div>
+    </section>
 
-<h1 class="headline">Lernquiz</h1>
+    <section class="menu-section">
+      <div class="menu-card accent-red"><span class="number">1.</span><div><h2>xABCDE</h2><p>Initiale Beurteilung, AVPU, Airway, Breathing, Circulation</p></div></div>
+      <div class="menu-card accent-blue"><span class="number">2.</span><div><h2>Laborwerte</h2><p>Normwerte, Röhrchen, klinische Einordnung</p></div></div>
+      <div class="menu-card accent-violet"><span class="number">3.</span><div><h2>Medikamente</h2><p>Indikation, Dosierung, Wirkung, Nebenwirkungen</p></div></div>
+      <div class="menu-card accent-green"><span class="number">4.</span><div><h2>EKG lernen</h2><p>Bilder sehen, einordnen, Rhythmus und Befund erkennen</p></div></div>
 
-<div class="list">
+      <button class="menu-card accent-orange interactive" type="button" id="toggleMaterials">
+        <span class="number">5.</span>
+        <div><h2>Unterrichtsmaterial</h2><p>Fachmodule und Dozenten übersichtlich gegliedert</p></div>
+      </button>
 
-<div class="card">1. xABCDE</div>
-<div class="card">2. Laborwerte</div>
-<div class="card">3. Medikamente</div>
-<div class="card">4. EKG lernen</div>
+      <div class="subsection hidden" id="materialsSection">
+        <div class="sub-header">Fachmodule</div>
+        <div class="module-grid">
+          <button class="module-pill" type="button">Fachmodul 1</button>
+          <button class="module-pill" type="button">Fachmodul 2</button>
+          <button class="module-pill" type="button">Fachmodul 3</button>
+          <button class="module-pill" type="button">Fachmodul 4</button>
+          <button class="module-pill" type="button">Fachmodul 5</button>
+        </div>
+      </div>
 
-<div class="card highlight" onclick="toggleModules()">5. Module & Dozenten</div>
+      <div class="menu-card accent-cyan"><span class="number">6.</span><div><h2>Fallbeispiele</h2><p>Praxisnahe Situationen und strukturierte Entscheidungen</p></div></div>
+      <div class="menu-card accent-ink"><span class="number">7.</span><div><h2>Meine Schwächen</h2><p>Nur die falsch oder nicht beantworteten Fragen</p></div></div>
+      <div class="menu-card accent-pink"><span class="number">8.</span><div><h2>Krankheitsbilder</h2><p>Symptome, Einordnung und klinische Relevanz</p></div></div>
+    </section>
 
-<div id="modules" class="hidden">
-<div class="subcard">Fachmodul 1</div>
-<div class="subcard">Fachmodul 2</div>
-<div class="subcard">Fachmodul 3</div>
-<div class="subcard">Fachmodul 4</div>
-<div class="subcard">Fachmodul 5</div>
-</div>
+    <section class="explain-section">
+      <div class="section-head">
+        <p class="eyebrow">Grundlagen verstehen</p>
+        <h3>Erklärbereiche</h3>
+      </div>
 
-<div class="card">6. Fallbeispiele</div>
-<div class="card">7. Meine Schwächen</div>
-<div class="card">8. Krankheitsbilder</div>
-
-</div>
-
-<h2 class="section">Grundlagen verstehen</h2>
-
-<div class="list">
-<div class="card small">EKG</div>
-<div class="card small">BGA</div>
-<div class="card small">Krankheitsbilder</div>
-</div>
-
-</div>
-
-<script src="quiz.js"></script>
+      <div class="explain-grid">
+        <button class="explain-card" type="button">
+          <span>01</span>
+          <strong>EKG</strong>
+          <small>Rhythmus, Ableitungen, Befunde</small>
+        </button>
+        <button class="explain-card" type="button">
+          <span>02</span>
+          <strong>BGA</strong>
+          <small>pH, CO₂, HCO₃ und Interpretation</small>
+        </button>
+        <button class="explain-card" type="button">
+          <span>03</span>
+          <strong>Krankheitsbilder</strong>
+          <small>Kompakt erklärt und sortiert</small>
+        </button>
+      </div>
+    </section>
+  </main>
+  <script src="quiz.js"></script>
 </body>
 </html>
