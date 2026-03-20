@@ -1,67 +1,211 @@
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    background: linear-gradient(to bottom, #f5f5f7, #e9e9ed);
-    height: 100vh;
-    overflow: hidden;
+* {
+  box-sizing: border-box;
 }
 
-.container {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 40px 24px 20px;
-    box-sizing: border-box;
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  height: 100dvh;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.96), rgba(236,236,240,0.92) 65%, rgba(228,228,232,1) 100%);
+  color: #111;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.screen {
+  width: 100vw;
+  height: 100dvh;
+  padding:
+    max(14px, env(safe-area-inset-top))
+    max(14px, env(safe-area-inset-right))
+    max(12px, env(safe-area-inset-bottom))
+    max(14px, env(safe-area-inset-left));
+}
+
+.hero-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: clamp(24px, 4vw, 36px);
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: minmax(160px, 39dvh) auto auto 1fr auto;
+  justify-items: center;
+  align-items: start;
+  padding:
+    clamp(16px, 2.2vh, 24px)
+    clamp(18px, 5vw, 34px)
+    clamp(12px, 2vh, 18px);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(247,247,249,0.9) 52%, rgba(241,241,244,0.98) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.78),
+    0 20px 50px rgba(15, 23, 42, 0.10);
+}
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(22px);
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+.glow-a {
+  width: min(54vw, 280px);
+  height: min(54vw, 280px);
+  top: 10%;
+  left: 14%;
+  background: radial-gradient(circle, rgba(78, 120, 255, 0.18), rgba(78, 120, 255, 0) 72%);
+}
+
+.glow-b {
+  width: min(48vw, 250px);
+  height: min(48vw, 250px);
+  top: 12%;
+  right: 10%;
+  background: radial-gradient(circle, rgba(255, 91, 146, 0.17), rgba(255, 91, 146, 0) 74%);
+}
+
+.avatar-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: end center;
+  z-index: 2;
+  will-change: transform;
+  transition: transform 180ms ease-out;
 }
 
 .avatar {
-    width: 180px;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    transition: transform 0.2s ease;
+  width: clamp(180px, 36vw, 340px);
+  max-height: min(35dvh, 370px);
+  object-fit: contain;
+  filter: drop-shadow(0 20px 28px rgba(11, 23, 49, 0.10));
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
 }
 
-.content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: -20px;
+.copy {
+  width: min(100%, 760px);
+  display: grid;
+  gap: clamp(8px, 1.2vh, 12px);
+  margin-top: clamp(2px, 0.6vh, 8px);
+  z-index: 2;
+}
+
+.eyebrow {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(12px, 1.55vh, 16px);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: rgba(17,17,17,0.56);
 }
 
 .title {
-    font-size: 34px;
-    font-weight: 700;
-    text-align: center;
-    margin: 5px 0 10px;
-    line-height: 1.2;
-    background: linear-gradient(90deg, #2d5bff, #7a5cff, #ff4d6d, #ff9a3c);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  margin: 0;
+  text-align: center;
+  font-weight: 800;
+  font-size: clamp(34px, 6vw, 64px);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  padding-bottom: 0.12em;
+  background: linear-gradient(90deg, #121826 0%, #2956ff 22%, #7b5cff 48%, #ff4f87 73%, #ff9800 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .subtitle {
-    font-size: 17px;
-    text-align: center;
-    max-width: 90%;
-    line-height: 1.4;
-    margin: 0 auto 20px;
-    color: #555;
+  margin: 0 auto;
+  width: 100%;
+  max-width: min(92vw, 760px);
+  text-align: center;
+  font-size: clamp(20px, 2.45vh, 31px);
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  color: rgba(22, 22, 26, 0.66);
+  text-wrap: balance;
 }
 
 .start-button {
-    padding: 16px 50px;
-    font-size: 18px;
-    border-radius: 999px;
-    border: none;
-    color: white;
-    background: linear-gradient(90deg, #ff9a3c, #ff4d6d);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    cursor: pointer;
+  align-self: center;
+  width: min(100%, 430px);
+  min-height: clamp(56px, 7vh, 72px);
+  margin-top: clamp(10px, 2.2vh, 18px);
+  padding: 14px 28px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: clamp(22px, 2.7vh, 30px);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: linear-gradient(135deg, #ffb13d 0%, #ff8a00 36%, #ff5d7a 70%, #ff4fa1 100%);
+  box-shadow:
+    0 14px 30px rgba(255, 128, 42, 0.28),
+    inset 0 1px 0 rgba(255,255,255,0.35);
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+  z-index: 2;
+}
+
+.start-button:active {
+  transform: scale(0.985);
 }
 
 .footer {
-    font-size: 11px;
-    color: #888;
+  margin: 0;
+  align-self: center;
+  font-size: clamp(10px, 1.1vh, 12px);
+  color: rgba(17,17,17,0.42);
+  z-index: 2;
+}
+
+@media (max-width: 430px) {
+  .hero-card {
+    grid-template-rows: minmax(150px, 36dvh) auto auto 1fr auto;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .subtitle {
+    max-width: 94%;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-card {
+    grid-template-rows: minmax(220px, 40dvh) auto auto 1fr auto;
+    padding-left: clamp(28px, 5vw, 56px);
+    padding-right: clamp(28px, 5vw, 56px);
+  }
+
+  .subtitle {
+    max-width: 82%;
+  }
+
+  .start-button {
+    width: min(70%, 440px);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .start-button:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 18px 34px rgba(255, 128, 42, 0.32),
+      inset 0 1px 0 rgba(255,255,255,0.35);
+    filter: saturate(1.05);
+  }
 }

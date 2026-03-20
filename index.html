@@ -1,25 +1,39 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Notfallpflege Quiz</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>Notfallpflege Quiz</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<div class="container">
-    <img src="assets/avatar.png" class="avatar">
-    <div class="content">
+  <main class="screen">
+    <section class="hero-card">
+      <div class="glow glow-a"></div>
+      <div class="glow glow-b"></div>
+
+      <div class="avatar-wrap" id="avatarWrap">
+        <img src="assets/avatar.png" alt="Avatar Notfallpflege" class="avatar" id="avatar" />
+      </div>
+
+      <div class="copy">
+        <p class="eyebrow">INTERDISZIPLINÄRE NOTFALLPFLEGE</p>
         <h1 class="title">Notfallpflege Quiz</h1>
         <p class="subtitle">
-            Trainiere Entscheidungen,<br>
-            treffe sie sicher –<br>
-            auch unter Zeitdruck.
+          Trainiere Entscheidungen, treffe sie sicher,
+          auch unter Zeitdruck.
         </p>
-        <button class="start-button" onclick="startQuiz()">START</button>
-    </div>
-    <div class="footer">© Notfallpflege Quiz</div>
-</div>
-<script src="script.js"></script>
+      </div>
+
+      <button class="start-button" id="startButton" type="button">START</button>
+
+      <p class="footer">© Notfallpflege Quiz</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
