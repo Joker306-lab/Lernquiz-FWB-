@@ -23,8 +23,50 @@ const jokerBtn = document.getElementById("jokerBtn");
 const feedbackEl = document.getElementById("feedback");
 const nextBtn = document.getElementById("nextBtn");
 
-const correctSound = new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg");
-const wrongSound = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
+// Freundlicher, kurzer Bestätigungston direkt im Browser.
+// Spart Ärger mit externen Dateien und klingt deutlich angenehmer.
+function playCorrectChime() {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+    const now = ctx.currentTime;
+
+    const master = ctx.createGain();
+    master.gain.setValueAtTime(0.0001, now);
+    master.gain.linearRampToValueAtTime(0.16, now + 0.02);
+    master.gain.exponentialRampToValueAtTime(0.0001, now + 0.65);
+    master.connect(ctx.destination);
+
+    const notes = [523.25, 659.25, 783.99];
+    notes.forEach((freq, index) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq, now + index * 0.08);
+
+      gain.gain.setValueAtTime(0.0001, now + index * 0.08);
+      gain.gain.linearRampToValueAtTime(0.45, now + index * 0.08 + 0.015);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.08 + 0.28);
+
+      osc.connect(gain);
+      gain.connect(master);
+
+      osc.start(now + index * 0.08);
+      osc.stop(now + index * 0.08 + 0.3);
+    });
+  } catch (error) {
+    // Absichtlich still. Kein Drama, wenn der Browser quer schießt.
+  }
+}
+
+function playWrongSound() {
+  try {
+    const wrongSound = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
+    wrongSound.currentTime = 0;
+    wrongSound.play().catch(() => {});
+  } catch (error) {}
+}
 
 function saveProgress() {
   localStorage.setItem("xabcdeCorrectCount", String(correctCount));
@@ -136,8 +178,7 @@ function handleAnswer(button, originalIndex) {
   if (isCorrect) {
     button.classList.add("correct");
     showImageOnButton(button, "correct");
-    correctSound.currentTime = 0;
-    correctSound.play().catch(() => {});
+    playCorrectChime();
     correctCount += 1;
     saveProgress();
     updateProgress();
@@ -146,8 +187,7 @@ function handleAnswer(button, originalIndex) {
   } else {
     button.classList.add("wrong");
     showImageOnButton(button, "wrong");
-    wrongSound.currentTime = 0;
-    wrongSound.play().catch(() => {});
+    playWrongSound();
     feedbackEl.textContent = "Nicht ganz. Diese Frage kommt später erneut.";
     feedbackEl.className = "feedback error";
     queue.push(currentQuestion);
