@@ -1,5 +1,7 @@
-Komplettpaket im früheren Designstand.
-Wichtig:
-Lege deine echte Sounddatei als assets/start.mp3 ab.
-Autoplay mit Ton wird versucht, kann aber auf iPhone/Safari vom Browser blockiert werden.
-Der Sound spielt auf jeden Fall beim Klick auf START oder als kurzer Fallback-Ton.
+Komplettpaket ohne Layout-Änderung.
+Neu:
+- Startsound ist jetzt ein eingebauter Start-Klickton
+- Richtige Antworten nutzen im ganzen Quiz denselben globalen freundlichen Ton
+- Falsche Antworten nutzen denselben globalen Fehlton
+
+Später kann jede weitere Quizseite einfach quiz-audio.js einbinden und denselben Sound verwenden.

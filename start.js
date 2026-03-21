@@ -1,8 +1,5 @@
 const startButton = document.getElementById('startButton');
 const avatarStage = document.getElementById('avatarStage');
-const startSound = new Audio('assets/start.mp3');
-startSound.preload = 'auto';
-let soundReady = false;
 
 function moveAvatar(x, y) {
   const dx = (window.innerWidth / 2 - x) / 70;
@@ -20,70 +17,46 @@ document.addEventListener('touchend', () => {
   avatarStage.style.transform = 'translate(0,0)';
 }, { passive: true });
 
-function playFallbackTone() {
+function playStartChime() {
   try {
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
-    if (!AudioCtx) return;
+    if (!AudioCtx) return 260;
+
     const ctx = new AudioCtx();
     const now = ctx.currentTime;
+
     const master = ctx.createGain();
     master.gain.setValueAtTime(0.0001, now);
-    master.gain.linearRampToValueAtTime(0.12, now + 0.02);
-    master.gain.exponentialRampToValueAtTime(0.0001, now + 0.35);
+    master.gain.linearRampToValueAtTime(0.14, now + 0.02);
+    master.gain.exponentialRampToValueAtTime(0.0001, now + 0.42);
     master.connect(ctx.destination);
 
-    const a = ctx.createOscillator();
-    const b = ctx.createOscillator();
-    a.type = 'sine';
-    b.type = 'triangle';
-    a.frequency.setValueAtTime(523.25, now);
-    b.frequency.setValueAtTime(659.25, now + 0.03);
-    a.connect(master);
-    b.connect(master);
-    a.start(now); a.stop(now + 0.28);
-    b.start(now + 0.03); b.stop(now + 0.35);
-  } catch (e) {}
-}
+    const notes = [523.25, 659.25];
+    notes.forEach((freq, index) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now + index * 0.06);
 
-async function tryAutoplayStartSound() {
-  try {
-    startSound.currentTime = 0;
-    await startSound.play();
-    soundReady = true;
+      gain.gain.setValueAtTime(0.0001, now + index * 0.06);
+      gain.gain.linearRampToValueAtTime(0.4, now + index * 0.06 + 0.015);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.06 + 0.24);
+
+      osc.connect(gain);
+      gain.connect(master);
+      osc.start(now + index * 0.06);
+      osc.stop(now + index * 0.06 + 0.26);
+    });
+
+    return 420;
   } catch (e) {
-    soundReady = false;
+    return 220;
   }
 }
 
-window.addEventListener('load', () => {
-  tryAutoplayStartSound();
-}, { once: true });
-
-document.addEventListener('pointerdown', async () => {
-  if (soundReady) return;
-  try {
-    startSound.currentTime = 0;
-    await startSound.play();
-    startSound.pause();
-    startSound.currentTime = 0;
-    soundReady = true;
-  } catch (e) {}
-}, { once: true });
-
-startButton.addEventListener('click', async () => {
+startButton.addEventListener('click', () => {
   startButton.disabled = true;
-  let delay = 220;
-
-  try {
-    startSound.currentTime = 0;
-    await startSound.play();
-    delay = Number.isFinite(startSound.duration) && startSound.duration > 0
-      ? Math.min(Math.max(startSound.duration * 1000, 450), 1800)
-      : 900;
-  } catch (e) {
-    playFallbackTone();
-    delay = 320;
-  }
+  const delay = playStartChime();
 
   setTimeout(() => {
     window.location.href = 'quiz.html';
