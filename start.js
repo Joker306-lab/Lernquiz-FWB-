@@ -13,3 +13,11 @@ document.addEventListener('touchmove',e=>{
   moveAvatar(t.clientX,t.clientY);
 },{passive:true});
 document.addEventListener('touchend',()=>avatarStage.style.transform='translate(0,0)',{passive:true});
+const startSound = new Audio("assets/dein-sound.mp3");
+
+document.getElementById('startButton').addEventListener('click', () => {
+  startSound.play();
+  setTimeout(() => {
+    window.location.href = "quiz.html";
+  }, 300); // kleiner Delay für nicer Effekt
+});
