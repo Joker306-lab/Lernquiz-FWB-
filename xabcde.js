@@ -1,228 +1,31 @@
-const questions = [
-  {
-    id: "xabcde-c-001",
-    question: "Was bedeutet das C im xABCDE Schema?",
-    answers: ["Control", "Core", "Circulation", "Cardio"],
-    correct: 2,
-    explanation: "Richtig. C steht für Circulation und beschreibt die Beurteilung von Kreislauf und Blutung."
-  }
-];
+const q={answers:["Control","Core","Circulation","Cardio"],correct:2}
+const answersDiv=document.getElementById("answers")
+const feedback=document.getElementById("feedback")
 
-let queue = [...questions];
-let currentQuestion = null;
-let timer = 25;
-let timerInterval = null;
-let jokerUsed = false;
-let correctCount = Number(localStorage.getItem("xabcdeCorrectCount") || "0");
-
-const answersEl = document.getElementById("answers");
-const timerEl = document.getElementById("timer");
-const progressFill = document.getElementById("progressFill");
-const currentCountEl = document.getElementById("currentCount");
-const jokerBtn = document.getElementById("jokerBtn");
-const feedbackEl = document.getElementById("feedback");
-const nextBtn = document.getElementById("nextBtn");
-
-// Freundlicher, kurzer Bestätigungston direkt im Browser.
-// Spart Ärger mit externen Dateien und klingt deutlich angenehmer.
-function playCorrectChime() {
-  try {
-    const AudioCtx = window.AudioContext || window.webkitAudioContext;
-    if (!AudioCtx) return;
-    const ctx = new AudioCtx();
-    const now = ctx.currentTime;
-
-    const master = ctx.createGain();
-    master.gain.setValueAtTime(0.0001, now);
-    master.gain.linearRampToValueAtTime(0.16, now + 0.02);
-    master.gain.exponentialRampToValueAtTime(0.0001, now + 0.65);
-    master.connect(ctx.destination);
-
-    const notes = [523.25, 659.25, 783.99];
-    notes.forEach((freq, index) => {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(freq, now + index * 0.08);
-
-      gain.gain.setValueAtTime(0.0001, now + index * 0.08);
-      gain.gain.linearRampToValueAtTime(0.45, now + index * 0.08 + 0.015);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.08 + 0.28);
-
-      osc.connect(gain);
-      gain.connect(master);
-
-      osc.start(now + index * 0.08);
-      osc.stop(now + index * 0.08 + 0.3);
-    });
-  } catch (error) {
-    // Absichtlich still. Kein Drama, wenn der Browser quer schießt.
-  }
+q.answers.forEach((a,i)=>{
+const btn=document.createElement("button")
+btn.className="answer"
+btn.textContent=a
+btn.onclick=()=>{
+if(i===q.correct){
+btn.classList.add("correct")
+feedback.textContent="Richtig"
+playCorrect()
+}else{
+btn.classList.add("wrong")
+feedback.textContent="Falsch"
 }
-
-function playWrongSound() {
-  try {
-    const wrongSound = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
-    wrongSound.currentTime = 0;
-    wrongSound.play().catch(() => {});
-  } catch (error) {}
 }
+answersDiv.appendChild(btn)
+})
 
-function saveProgress() {
-  localStorage.setItem("xabcdeCorrectCount", String(correctCount));
+function playCorrect(){
+try{
+const ctx=new (window.AudioContext||window.webkitAudioContext)()
+const o=ctx.createOscillator()
+o.frequency.value=600
+o.connect(ctx.destination)
+o.start()
+o.stop(ctx.currentTime+0.2)
+}catch(e){}
 }
-
-function updateProgress() {
-  currentCountEl.textContent = String(correctCount);
-  const width = Math.min((correctCount / 100) * 100, 100);
-  progressFill.style.width = `${width}%`;
-}
-
-function shuffleAnswers(question) {
-  const mapped = question.answers.map((text, index) => ({ text, index }));
-  for (let i = mapped.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [mapped[i], mapped[j]] = [mapped[j], mapped[i]];
-  }
-  return mapped;
-}
-
-function setButtonsLocked(locked) {
-  const buttons = document.querySelectorAll(".answer-btn");
-  buttons.forEach(btn => {
-    btn.disabled = locked;
-    if (locked) btn.style.pointerEvents = "none";
-  });
-}
-
-function resetJoker() {
-  jokerUsed = false;
-  jokerBtn.disabled = false;
-}
-
-function renderQuestion() {
-  if (queue.length === 0) {
-    queue = [...questions];
-  }
-
-  resetJoker();
-  feedbackEl.textContent = "";
-  feedbackEl.className = "feedback";
-  nextBtn.classList.add("hidden");
-  answersEl.innerHTML = "";
-
-  currentQuestion = queue.shift();
-  const shuffled = shuffleAnswers(currentQuestion);
-
-  shuffled.forEach((item) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "answer-btn";
-    button.dataset.originalIndex = String(item.index);
-
-    const text = document.createElement("span");
-    text.className = "answer-text";
-    text.textContent = item.text;
-
-    const image = document.createElement("img");
-    image.className = "answer-image";
-    image.alt = "";
-    image.src = "assets/correct.png";
-
-    button.appendChild(text);
-    button.appendChild(image);
-    button.addEventListener("click", () => handleAnswer(button, item.index));
-
-    answersEl.appendChild(button);
-  });
-
-  currentQuestion.shuffled = shuffled;
-  startTimer();
-}
-
-function startTimer() {
-  clearInterval(timerInterval);
-  timer = 25;
-  timerEl.textContent = String(timer);
-
-  timerInterval = setInterval(() => {
-    timer -= 1;
-    timerEl.textContent = String(timer);
-
-    if (timer <= 0) {
-      clearInterval(timerInterval);
-      feedbackEl.textContent = "Zeit abgelaufen. Die Frage kommt später noch einmal.";
-      feedbackEl.className = "feedback error";
-      queue.push(currentQuestion);
-      setButtonsLocked(true);
-      jokerBtn.disabled = true;
-      nextBtn.classList.remove("hidden");
-    }
-  }, 1000);
-}
-
-function showImageOnButton(button, type) {
-  const image = button.querySelector(".answer-image");
-  if (!image) return;
-  image.src = type === "correct" ? "assets/correct.png" : "assets/wrong.png";
-  button.classList.add("show-image");
-}
-
-function handleAnswer(button, originalIndex) {
-  clearInterval(timerInterval);
-  setButtonsLocked(true);
-  jokerBtn.disabled = true;
-
-  const isCorrect = originalIndex === currentQuestion.correct;
-
-  if (isCorrect) {
-    button.classList.add("correct");
-    showImageOnButton(button, "correct");
-    playCorrectChime();
-    correctCount += 1;
-    saveProgress();
-    updateProgress();
-    feedbackEl.textContent = currentQuestion.explanation;
-    feedbackEl.className = "feedback success";
-  } else {
-    button.classList.add("wrong");
-    showImageOnButton(button, "wrong");
-    playWrongSound();
-    feedbackEl.textContent = "Nicht ganz. Diese Frage kommt später erneut.";
-    feedbackEl.className = "feedback error";
-    queue.push(currentQuestion);
-
-    const buttons = Array.from(document.querySelectorAll(".answer-btn"));
-    buttons.forEach((btn) => {
-      const idx = Number(btn.dataset.originalIndex);
-      if (idx === currentQuestion.correct) {
-        btn.classList.add("correct");
-      }
-    });
-  }
-
-  nextBtn.classList.remove("hidden");
-}
-
-jokerBtn.addEventListener("click", () => {
-  if (jokerUsed || !currentQuestion) return;
-
-  const buttons = Array.from(document.querySelectorAll(".answer-btn"));
-  const wrongButtons = buttons.filter((btn) => {
-    const idx = Number(btn.dataset.originalIndex);
-    return idx !== currentQuestion.correct && !btn.classList.contains("removed");
-  });
-
-  if (wrongButtons.length === 0) return;
-
-  const randomButton = wrongButtons[Math.floor(Math.random() * wrongButtons.length)];
-  randomButton.classList.add("removed");
-  randomButton.disabled = true;
-  jokerUsed = true;
-  jokerBtn.disabled = true;
-});
-
-nextBtn.addEventListener("click", renderQuestion);
-
-updateProgress();
-renderQuestion();

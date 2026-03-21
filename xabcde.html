@@ -1,51 +1,26 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>xABCDE Quiz</title>
-  <link rel="stylesheet" href="xabcde.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="xabcde.css">
 </head>
 <body>
-  <main class="page-shell">
-    <section class="quiz-top">
-      <a href="quiz.html" class="back-link">‹ Zurück</a>
-      <p class="eyebrow colorful">xABCDE</p>
-      <h1>Wissen trainieren im xABCDE Schema</h1>
-      <p class="lead">Eine Frage als funktionierender Start. Sound, Joker, Timer und Wiederholung bleiben erhalten, ohne dass das restliche Menü wieder implodiert.</p>
-    </section>
 
-    <section class="status-card">
-      <div class="status-row">
-        <span class="status-label">Fortschritt</span>
-        <span class="status-label"><span id="currentCount">0</span> / 100</span>
-      </div>
-      <div class="progress-track">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
-      <div class="status-row lower">
-        <span class="timer-pill"><span id="timer">25</span>s</span>
-      </div>
-    </section>
+<div class="container">
+<h2>Was bedeutet das C im xABCDE Schema?</h2>
 
-    <section class="question-card">
-      <div class="question-meta">Frage 1</div>
-      <h2 class="question-text" id="questionText">Was bedeutet das C im xABCDE Schema?</h2>
+<div id="answers"></div>
 
-      <div class="answers" id="answers"></div>
+<button id="jokerBtn" class="joker">
+<span>🎩</span> Joker einsetzen
+</button>
 
-      <button id="jokerBtn" class="joker-wide" type="button">
-        <span class="joker-icon-wrap">
-          <img src="assets/joker-smart.png" alt="Joker" class="joker-smart-icon">
-        </span>
-        <span class="joker-text">Joker einsetzen</span>
-      </button>
+<p id="feedback"></p>
 
-      <div class="feedback" id="feedback"></div>
-      <button class="next-btn hidden" id="nextBtn" type="button">Weiter</button>
-    </section>
-  </main>
+<a href="quiz.html" class="back">Zurück</a>
+</div>
 
-  <script src="xabcde.js"></script>
+<script src="xabcde.js"></script>
 </body>
 </html>

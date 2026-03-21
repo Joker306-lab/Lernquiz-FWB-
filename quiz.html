@@ -1,66 +1,18 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Quiz Menü</title>
-  <link rel="stylesheet" href="quiz.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="quiz.css">
 </head>
 <body>
-  <main class="page-shell">
-    <section class="hero">
-      <p class="eyebrow">Fachweiterbildung Lernquiz</p>
-      <h1>Wissen trainieren für Schockraum, Notaufnahme und Akutsituationen</h1>
-      <p class="lead">
-        Dieses Quiz dient zum wiederholten, strukturierten Lernen. Du trainierst xABCDE,
-        Laborwerte, Medikamente, EKG, Polytrauma und Immobilisation.
-      </p>
-    </section>
-
-    <section class="menu-section">
-      <a class="menu-card accent-red link-card" href="xabcde.html"><span class="number">1.</span><div><h2>xABCDE</h2><p>Initiale Beurteilung, AVPU, Airway, Breathing, Circulation</p></div></a>
-      <div class="menu-card accent-blue"><span class="number">2.</span><div><h2>Laborwerte</h2><p>Normwerte, Röhrchen, klinische Einordnung</p></div></div>
-      <div class="menu-card accent-violet"><span class="number">3.</span><div><h2>Medikamente</h2><p>Indikation, Dosierung, Wirkung, Nebenwirkungen</p></div></div>
-      <div class="menu-card accent-green"><span class="number">4.</span><div><h2>EKG lernen</h2><p>Bilder sehen, einordnen, Rhythmus und Befund erkennen</p></div></div>
-
-      <button class="menu-card accent-orange interactive" type="button" id="toggleMaterials">
-        <span class="number">5.</span>
-        <div><h2>Unterrichtsmaterial</h2><p>Fachmodule und Dozenten übersichtlich gegliedert</p></div>
-      </button>
-
-      <div class="subsection hidden" id="materialsSection">
-        <div class="sub-header">Fachmodule</div>
-        <div class="module-grid">
-          <button class="module-pill" type="button">Fachmodul 1</button>
-          <button class="module-pill" type="button">Fachmodul 2</button>
-          <button class="module-pill" type="button">Fachmodul 3</button>
-          <button class="module-pill" type="button">Fachmodul 4</button>
-          <button class="module-pill" type="button">Fachmodul 5</button>
-        </div>
-      </div>
-
-      <div class="menu-card accent-cyan"><span class="number">6.</span><div><h2>Fallbeispiele</h2><p>Praxisnahe Situationen und strukturierte Entscheidungen</p></div></div>
-      <div class="menu-card accent-ink"><span class="number">7.</span><div><h2>Meine Schwächen</h2><p>Nur die falsch oder nicht beantworteten Fragen</p></div></div>
-      <div class="menu-card accent-pink"><span class="number">8.</span><div><h2>Krankheitsbilder</h2><p>Symptome, Einordnung und klinische Relevanz</p></div></div>
-    </section>
-
-    <section class="explain-section">
-      <div class="section-head">
-        <p class="eyebrow colorful">Erklärbereich</p>
-      </div>
-
-      <div class="explain-list">
-        <div class="menu-card accent-blue"><span class="number">1.</span><div><h2>EKG</h2><p>Rhythmus, Ableitungen, Befunde erkennen und verstehen</p></div></div>
-        <div class="menu-card accent-orange"><span class="number">2.</span><div><h2>BGA</h2><p>pH, CO₂, HCO₃ und klinische Interpretation</p></div></div>
-        <div class="menu-card accent-violet"><span class="number">3.</span><div><h2>Krankheitsbilder</h2><p>Kompakt erklärt und sinnvoll gegliedert</p></div></div>
-      </div>
-    </section>
-
-    <section class="bottom-nav">
-      <a class="home-button" href="index.html">Zur Startseite</a>
-    </section>
-  </main>
-
-  <script src="quiz.js"></script>
+<div class="container">
+<h1>Übersicht</h1>
+<a class="card" href="xabcde.html">1. xABCDE</a>
+<a class="card">2. Laborwerte</a>
+<a class="card">3. Medikamente</a>
+<a class="card">4. EKG</a>
+<a href="index.html" class="back">Zurück</a>
+</div>
 </body>
 </html>
