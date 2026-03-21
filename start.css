@@ -1,6 +1,0 @@
-body{margin:0;font-family:-apple-system;background:#fff;text-align:center}
-.wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;gap:16px}
-.avatar{width:260px}
-.title{font-size:42px;background:linear-gradient(90deg,#2563ff,#7c3aed,#ec4899,#f59e0b);-webkit-background-clip:text;color:transparent}
-.sub{font-size:18px;color:#555;padding:0 20px}
-button{width:80%;max-width:400px;padding:18px;border-radius:30px;border:none;font-size:20px;background:linear-gradient(135deg,#ff8a00,#ff4f9f);color:#fff}
