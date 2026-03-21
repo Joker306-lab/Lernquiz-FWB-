@@ -53,13 +53,17 @@ function setButtonsLocked(locked) {
   });
 }
 
+function resetJoker() {
+  jokerUsed = false;
+  jokerBtn.disabled = false;
+}
+
 function renderQuestion() {
   if (queue.length === 0) {
     queue = [...questions];
   }
 
-  jokerUsed = false;
-  jokerBtn.disabled = false;
+  resetJoker();
   feedbackEl.textContent = "";
   feedbackEl.className = "feedback";
   nextBtn.classList.add("hidden");
@@ -67,7 +71,6 @@ function renderQuestion() {
 
   currentQuestion = queue.shift();
   const shuffled = shuffleAnswers(currentQuestion);
-  currentQuestion.shuffled = shuffled;
 
   shuffled.forEach((item) => {
     const button = document.createElement("button");
@@ -91,6 +94,7 @@ function renderQuestion() {
     answersEl.appendChild(button);
   });
 
+  currentQuestion.shuffled = shuffled;
   startTimer();
 }
 
