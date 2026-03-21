@@ -1,0 +1,8 @@
+
+<!-- Ersetze im xabcde.html den Joker Bereich durch das hier -->
+<button id="jokerBtn" class="joker-wide" type="button">
+  <span class="joker-icon-wrap">
+    <span class="joker-icon">🎩</span>
+  </span>
+  <span class="joker-text">Joker einsetzen</span>
+</button>
