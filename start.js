@@ -1,1 +1,5 @@
-const btn=document.getElementById('startBtn');btn.onclick=()=>{const audio=new Audio('assets/start.mp3');audio.play().catch(()=>{});setTimeout(()=>{window.location='quiz.html'},500)}
+document.getElementById("startBtn").onclick=()=>{
+const audio=new Audio("assets/start.mp3");
+audio.play().catch(()=>{});
+setTimeout(()=>window.location="quiz.html",400);
+}
