@@ -10,3 +10,10 @@ Neu angepasst:
 - Kategorie 1 heißt xABCDE Schema
 - Kategorie 7 Krankheitsbilder
 - Kategorie 8 Meine Schwächen
+
+
+Update März 2026:
+- EKG Kategorie aktiviert
+- Optionales Bild-Rendering für Fragen in play.html und weakness-play.html
+- Freie EKG-SVG-Beispielbilder in assets/ekg
+- Bestehende xABCDE- und Labor-Module unverändert belassen
