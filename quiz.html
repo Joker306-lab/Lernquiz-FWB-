@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Quiz Übersicht</title>
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+  <main class="page-shell">
+    <section class="hero">
+      <p class="eyebrow">Fachweiterbildung Lernquiz</p>
+      <h1>Wissen trainieren für Schockraum, Notaufnahme und Akutsituationen</h1>
+      <p class="lead">Dieses Quiz dient zum wiederholten, strukturierten Lernen. Du trainierst xABCDE, Laborwerte, Medikamente, EKG, Polytrauma und Immobilisation.</p>
+    </section>
+
+    <section class="mode-card">
+      <p class="eyebrow small center">SO FUNKTIONIERT DEIN QUIZ</p>
+      <h2 class="mode-title">Modus wählen</h2>
+      <p class="mode-sub">Wähle, wie du trainieren willst. Die Einstellung gilt beim Start jeder Kategorie.</p>
+      <div class="mode-badge" id="activeModeBadge">Lernmodus aktiv</div>
+      <div class="mode-grid">
+        <button class="mode-option active" data-mode="learn" type="button">
+          <strong>Lernmodus</strong>
+          <span>Falsche Fragen kommen wieder. Ziel: Alle Fragen richtig beantworten.</span>
+        </button>
+        <button class="mode-option" data-mode="exam" type="button">
+          <strong>Prüfungsmodus</strong>
+          <span>Jede Frage kommt nur einmal. Ziel: Bestmögliche Punktzahl.</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="menu-section" id="categoryMenu"></section>
+
+    <section class="explain-section">
+      <p class="explain-title colorful">Erklärbereich</p>
+      <div class="explain-list" id="explainMenu"></div>
+    </section>
+
+    <section class="bottom-nav">
+      <a class="home-button" href="index.html">Zur Startseite</a>
+    </section>
+  </main>
+
+  
+<footer class="site-footer">
+  <a href="impressum.html">Impressum</a>
+  <span class="separator">·</span>
+  <a href="datenschutz.html">Datenschutz</a>
+  <span class="separator">·</span>
+  <span>© Notfallpflege Quiz Alvarez</span>
+</footer>
+
+
+  <script src="categories-data.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>
