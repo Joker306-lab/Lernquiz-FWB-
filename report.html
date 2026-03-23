@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Fehler melden</title>
+  <link rel="stylesheet" href="report.css">
+</head>
+<body>
+  <main class="page-shell">
+    <section class="report-card">
+      <p class="eyebrow">KORREKTURHINWEIS</p>
+      <h1>Fehler melden</h1>
+      <p class="intro">Beschreibe hier so genau wie möglich, was fehlerhaft ist, auf welcher Seite oder in welcher Frage der Fehler auftaucht und wie die korrekte Information lauten sollte.</p>
+
+      <form class="report-form" action="mailto:Nikeair187@outlook.de" method="post" enctype="text/plain">
+        <label>
+          Bereich oder Kategorie
+          <input type="text" name="Bereich" placeholder="z. B. xABCDE, Laborwerte, Haftungsausschluss">
+        </label>
+
+        <label>
+          Betroffene Frage oder Stelle
+          <input type="text" name="Frage oder Stelle" placeholder="z. B. Frage 3 oder Textabschnitt auf Seite 2">
+        </label>
+
+        <label>
+          Fehlerbeschreibung
+          <textarea name="Fehlerbeschreibung" rows="7" placeholder="Was genau ist falsch, unklar oder veraltet?"></textarea>
+        </label>
+
+        <label>
+          Vorschlag zur Korrektur
+          <textarea name="Korrekturvorschlag" rows="6" placeholder="Wie sollte der Inhalt stattdessen lauten?"></textarea>
+        </label>
+
+        <div class="button-row">
+          <a href="disclaimer.html" class="secondary-button">Zurück</a>
+          <button type="submit" class="primary-button">Per Mail senden</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  
+<footer class="site-footer">
+  <a href="impressum.html">Impressum</a>
+  <span class="separator">·</span>
+  <span>© Notfallpflege Quiz Alvarez</span>
+</footer>
+
+</body>
+</html>
