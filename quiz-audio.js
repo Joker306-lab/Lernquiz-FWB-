@@ -1,5 +1,5 @@
-const correctAudio = new Audio('assets/correct.wav');
-const wrongAudio = new Audio('assets/wrong.wav');
+const correctAudio = new Audio('assets/correct.mp3');
+const wrongAudio = new Audio('assets/wrong.mp3');
 correctAudio.preload = 'auto';
 wrongAudio.preload = 'auto';
 function playSound(type){
