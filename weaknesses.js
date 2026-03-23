@@ -1,0 +1,6 @@
+function loadWeaknesses(){try{return JSON.parse(localStorage.getItem("quizWeaknesses")||"{}");}catch(e){return {};}}function saveWeaknesses(data){localStorage.setItem("quizWeaknesses",JSON.stringify(data));}
+const data=loadWeaknesses();const container=document.getElementById("weaknessOverview");const empty=document.getElementById("emptyState");const bank=window.QUIZ_QUESTION_BANK||{};const categories=Object.keys(data).filter(key=>Array.isArray(data[key])&&data[key].length>0);
+if(categories.length===0){empty.classList.remove("hidden");}else{
+  container.innerHTML=categories.map(cat=>{const title=bank[cat]?.title||cat;const count=data[cat].length;const questions=(bank[cat]?.questions||[]).filter(q=>data[cat].includes(q.id));const preview=questions.slice(0,3).map(q=>`<p>• ${q.question}</p>`).join("");return `<div class="weak-card"><h2>${title}</h2><p>${count} offene Frage${count===1?"":"n"}</p>${preview}<div class="weak-actions"><a class="train-button" href="weakness-play.html?category=${cat}">Jetzt trainieren</a><button class="clear-button" data-clear="${cat}">Liste leeren</button></div></div>`;}).join("");
+  document.querySelectorAll("[data-clear]").forEach(btn=>btn.addEventListener("click",()=>{const cat=btn.getAttribute("data-clear");const next=loadWeaknesses();delete next[cat];saveWeaknesses(next);location.reload();}));
+}
