@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Haftungsausschluss</title>
-  <link rel="stylesheet" href="disclaimer.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="disclaimer.css">
+<title>Haftungsausschluss</title>
 </head>
 <body>
-  <main class="page-shell">
-    <section class="hero-card">
-      <div class="figure-area">
-        <div class="figure-badge">Hinweis</div>
-        <img src="assets/disclaimer-figure.png" alt="Hinweisfigur" class="figure-img">
-      </div>
 
-      <div class="content-area">
-        <p class="eyebrow">WICHTIGE INFORMATION</p>
-        <h1>Haftungsausschluss</h1>
+<div class="wrapper">
 
-        <div class="legal-copy">
-          <p>Dieses Lernquiz dient ausschließlich der spielerischen Unterhaltung sowie dem allgemeinen, unverbindlichen Wiederholen von Lerninhalten. Es stellt weder eine medizinische Diagnose, noch eine Therapieempfehlung, noch eine sonstige fachlich verbindliche Handlungsvorgabe dar.</p>
-          <p>Trotz sorgfältiger Erstellung kann nicht ausgeschlossen werden, dass Inhalte aufgrund technischer, inhaltlicher oder programmierbedingter Fehler unzutreffend, unvollständig oder missverständlich dargestellt werden. Gleiches gilt für Änderungen des medizinischen Wissensstands, von Leitlinien, Standards oder klinischen Empfehlungen, die nachträglich zu abweichenden Bewertungen führen können.</p>
-          <p>Die Nutzung erfolgt daher ausschließlich in eigener Verantwortung. Eine Haftung für unmittelbare oder mittelbare Schäden, Fehlentscheidungen oder sonstige Nachteile, die aus der Nutzung des Lernquiz entstehen, ist, soweit gesetzlich zulässig, ausgeschlossen.</p>
-          <p>Sollte ein Fehler, eine Unstimmigkeit oder ein veralteter Inhalt auffallen, kann dies an <a href="mailto:Nikeair187@outlook.de">Nikeair187@outlook.de</a> gemeldet werden. Jeder Hinweis wird geprüft und gegebenenfalls angepasst.</p>
-        </div>
+<div class="figure">
+<img src="assets/disclaimer-figure.png">
+</div>
 
-        <div class="action-row">
-          <a href="index.html" class="action-button danger">Nicht akzeptiert</a>
-          <a href="quiz.html" class="action-button success">Einverstanden</a>
-        </div>
-      </div>
-    </section>
-  </main>
+<div class="text">
+<h1>Haftungsausschluss</h1>
 
-  <footer class="site-footer">
-    <a href="impressum.html">Impressum</a>
-  </footer>
+<p>Dieses Lernquiz dient ausschließlich der spielerischen Unterhaltung sowie dem allgemeinen Wiederholen von Lerninhalten. Es stellt keine medizinische Diagnose dar.</p>
+
+<p>Es kann zu inhaltlichen oder technischen Fehlern kommen, sowohl durch Programmierung als auch durch sich veränderndes medizinisches Wissen.</p>
+
+<p>Solltest du einen Fehler entdecken, kannst du diesen an Nikeair187@outlook.de melden. Der Inhalt wird geprüft und gegebenenfalls angepasst.</p>
+
+<div class="buttons">
+<button class="red" onclick="back()">Nicht akzeptiert</button>
+<button class="green" onclick="next()">Einverstanden</button>
+</div>
+
+</div>
+
+</div>
+
+<script>
+function back(){window.location='index.html'}
+function next(){window.location='quiz.html'}
+</script>
+
 </body>
 </html>
