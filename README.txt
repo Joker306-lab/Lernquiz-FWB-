@@ -17,3 +17,7 @@ Update März 2026:
 - Optionales Bild-Rendering für Fragen in play.html und weakness-play.html
 - Freie EKG-SVG-Beispielbilder in assets/ekg
 - Bestehende xABCDE- und Labor-Module unverändert belassen
+
+
+Neu ergänzt: Fachmodul 4 > Dr. Maximilian Ludwig erläutert die essenziellen Abläufe der Allgemeinanästhesie im Schockraum.
+Aufruf über Unterrichtsmaterial > Fachmodul 4 oder direkt über fachmodul-4/index.html.
