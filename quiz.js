@@ -4,13 +4,7 @@ function createCard(item){
     return `<a class="menu-card ${item.accent} link-card" href="${item.href}"><span class="number">${item.number}</span><div><h2>${item.title}</h2><p>${item.description}</p></div></a>`;
   }
   if(item.type==="expand"){
-    const modules=item.modules.map(m=>{
-      const label=typeof m==="string"?m:m.label;
-      const href=typeof m==="object"&&m.href?m.href:null;
-      return href
-        ? `<a class="module-pill module-link" href="${href}">${label}</a>`
-        : `<button class="module-pill" type="button">${label}</button>`;
-    }).join("");
+    const modules=item.modules.map(m=>typeof m==="string"?`<button class="module-pill" type="button">${m}</button>`:`<a class="module-pill module-link" href="${m.href}">${m.label}</a>`).join("");
     return `<div><button class="menu-card ${item.accent} menu-link-button" type="button" data-expand="${item.id}"><span class="number">${item.number}</span><div><h2>${item.title}</h2><p>${item.description}</p></div></button><div class="subsection hidden" id="${item.id}"><div class="sub-header">Fachmodule</div><div class="module-grid">${modules}</div></div></div>`;
   }
   return `<div class="menu-card ${item.accent}"><span class="number">${item.number}</span><div><h2>${item.title}</h2><p>${item.description}</p></div></div>`;
